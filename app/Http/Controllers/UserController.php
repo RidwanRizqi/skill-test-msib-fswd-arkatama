@@ -17,9 +17,9 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        preg_match('/^([^\d]+)\s*(\d+)(?:\s*(?:TAHUN|THN|TH)i)?\s*(.+)$/i', $data['data'], $hasil);
+        preg_match('/^([^\d]+)\s*(\d+)\s*(.+)$/i', $data['data'], $hasil);
 
-        $kota = str_ireplace('tahun', '', $hasil[3]);
+        $kota = str_ireplace(['tahun', 'thn', 'th'], '', $hasil[3]);
 
         try {
             DB::beginTransaction();
